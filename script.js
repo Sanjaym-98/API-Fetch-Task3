@@ -4,7 +4,11 @@ const body =document.body;
 
 btn.addEventListener("click",getmovie)
 function getmovie(){
-    fetch("https://www.omdbapi.com/?i=tt3896198&apikey=b5e039d7").then((response)=>{
+
+const apikey="b5e039d7";
+let inputvalue =input.value;
+let url =`http://www.omdbapi.com/?apikey=${apikey}&t=${inputvalue}`;
+    fetch(url).then((response)=>{
         return response.json();
     }).then((data)=>{
         console.log(data)
@@ -12,7 +16,7 @@ function getmovie(){
     const div = document.createElement('div');
     body.appendChild(div);
     const img = document.createElement('img');
-   img.setAttribute('src',"https://img.omdbapi.com/?i=tt3896198&apikey=b5e039d7");
+   img.setAttribute('src',data.Poster);
    div.appendChild(img)
     const h3= document.createElement('h3');
     h3.innerText =`Movie Title: ${data.Title}`;
